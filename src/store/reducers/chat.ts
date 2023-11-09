@@ -52,10 +52,23 @@ const chatSlice = createSlice({
     changeInputValue(state, action: PayloadAction<string>) {
       state.inputValue = action.payload;
     },
+    addNewMessage(state) {
+      const newMessage = {
+        id: crypto.randomUUID(),
+        author: 'Moi',
+        // Je récupère la valeur de l'input qui est déjà stocker dans mon state.
+        content: state.inputValue,
+      };
+
+      // Comme j'utilise redux toolkit, pas besoin de m'embête avec l'immutabilité. C'est gérer automatiquement.
+      state.messages.push(newMessage);
+      // Après avoir ajouter mon message, je vide mon input.
+      state.inputValue = '';
+    },
   },
 });
 
-export const { changeInputValue } = chatSlice.actions;
+export const { changeInputValue, addNewMessage } = chatSlice.actions;
 
 // J'exporte le reducer généré par Redux Toolkit.
 export default chatSlice.reducer;
