@@ -11,6 +11,7 @@
     padding: 0 1rem;
     outline: none;
     border-bottom: 2px solid transparent;
+    transition: all 0.2s;
 
     &:focus {
       border-bottom-color: v.$text-blue;
@@ -23,5 +24,12 @@
     background-color: transparent;
     color: v.$text-blue;
     cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  // Le + permet de sélectionner un élément qui suit immédiatement un autre élément
+  &__input:focus + &__button {
+    background-color: v.$text-blue;
+    color: #fff;
   }
 }
