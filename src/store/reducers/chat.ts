@@ -8,6 +8,7 @@ type Message = {
 
 type ChatState = {
   messages: Message[];
+  inputValue: string;
 };
 
 // De manière générale, on va toujours définir le type pour notre état initial.
@@ -35,6 +36,7 @@ const initialState: ChatState = {
       content: 'Tu fais quoi ?',
     },
   ],
+  inputValue: 'Yeah Men !',
 };
 
 // Pour créer mon reducer, je vais utiliser la fonction createSlice() de Redux Toolkit.

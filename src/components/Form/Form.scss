@@ -10,9 +10,10 @@
     height: 2.5rem;
     padding: 0 1rem;
     outline: none;
+    border-bottom: 2px solid transparent;
 
     &:focus {
-      border-bottom: 2px solid v.$text-blue;
+      border-bottom-color: v.$text-blue;
       color: v.$text-blue;
     }
   }
