@@ -1,0 +1,26 @@
+@use '../../styles/variables' as v;
+
+.form {
+  background-color: #fff;
+  display: flex;
+
+  &__input {
+    flex-grow: 1;
+    border: none;
+    height: 2.5rem;
+    padding: 0 1rem;
+    outline: none;
+
+    &:focus {
+      border-bottom: 2px solid v.$text-blue;
+      color: v.$text-blue;
+    }
+  }
+
+  &__button {
+    border: none;
+    background-color: transparent;
+    color: v.$text-blue;
+    cursor: pointer;
+  }
+}

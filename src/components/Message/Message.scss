@@ -1,0 +1,34 @@
+@use '../../styles/variables' as v;
+
+.message {
+  margin-bottom: 1rem;
+  border: 2px solid transparent;
+  border-radius: 1.5rem;
+
+  &:hover {
+    border-color: #f0f;
+  }
+
+  &__author {
+    padding: 1rem 2rem;
+  }
+
+  &__content {
+    background-color: #fff;
+    min-width: 10rem;
+    padding: 1rem 1.5rem;
+    border-radius: 1.5rem;
+    color: v.$text-blue;
+    position: relative;
+
+    &::before {
+      position: absolute;
+      content: '';
+      border: 0.5rem solid #fff;
+      border-top-color: transparent;
+      border-left-color: transparent;
+      top: -1rem;
+      left: 2rem;
+    }
+  }
+}
