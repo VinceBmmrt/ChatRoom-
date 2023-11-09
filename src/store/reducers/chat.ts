@@ -1,6 +1,36 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {};
+type Message = {
+  id: string;
+  author: string;
+  content: string;
+};
+
+type ChatState = {
+  messages: Message[];
+};
+
+// De manière générale, on va toujours définir le type pour notre état initial.
+// Cela permet par exemple de dire ce que contiendra nos tableaux. (souvent en état initial, les tableaux sont vides)
+const initialState: ChatState = {
+  messages: [
+    {
+      id: crypto.randomUUID(),
+      author: 'Moi',
+      content: 'Salut, ça va ?',
+    },
+    {
+      id: crypto.randomUUID(),
+      author: 'Jules',
+      content: 'Oui et toi ?',
+    },
+    {
+      id: crypto.randomUUID(),
+      author: 'Moi',
+      content: 'Oui, merci !',
+    },
+  ],
+};
 
 // Pour créer mon reducer, je vais utiliser la fonction createSlice() de Redux Toolkit.
 const chatSlice = createSlice({
