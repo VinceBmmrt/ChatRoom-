@@ -29,6 +29,11 @@ const initialState: ChatState = {
       author: 'Moi',
       content: 'Oui, merci !',
     },
+    {
+      id: crypto.randomUUID(),
+      author: 'Jules',
+      content: 'Tu fais quoi ?',
+    },
   ],
 };
 
