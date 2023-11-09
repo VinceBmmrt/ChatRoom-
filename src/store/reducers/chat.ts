@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type Message = {
   id: string;
@@ -48,10 +48,14 @@ const chatSlice = createSlice({
   initialState,
   // Il prendra un objet contenant les actions qu'il pourra gérer.
   // Comme le switch case en redux classique
-  reducers: {},
+  reducers: {
+    changeInputValue(state, action: PayloadAction<string>) {
+      state.inputValue = action.payload;
+    },
+  },
 });
 
-// export const {} = chatSlice.actions;
+export const { changeInputValue } = chatSlice.actions;
 
 // J'exporte le reducer généré par Redux Toolkit.
 export default chatSlice.reducer;
