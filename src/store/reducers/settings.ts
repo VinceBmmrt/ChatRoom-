@@ -30,7 +30,8 @@ const settingsSlice = createSlice({
       // Mon payload ne va plus être une simple chaine de caractère mais un objet
       action: PayloadAction<{
         // fieldName correspondra au nom du champ à modifier (email ou password)
-        fieldName: 'email' | 'password';
+        // keyof permet de récupérer la liste des propriétés d'un type
+        fieldName: keyof SettingsState['credentials'];
         // value correspondra à la valeur à mettre dans le champ
         value: string;
       }>
