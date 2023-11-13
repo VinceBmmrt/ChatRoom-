@@ -25,12 +25,28 @@ const settingsSlice = createSlice({
       // true => false, false => true
       state.isOpen = !state.isOpen;
     },
-    changeInputEmailValue(state, action: PayloadAction<string>) {
-      state.credentials.email = action.payload;
+    changeInputCredentialValue(
+      state,
+      // Mon payload ne va plus être une simple chaine de caractère mais un objet
+      action: PayloadAction<{
+        // fieldName correspondra au nom du champ à modifier (email ou password)
+        fieldName: 'email' | 'password';
+        // value correspondra à la valeur à mettre dans le champ
+        value: string;
+      }>
+    ) {
+      // state.credentials.email = action.payload;
+      // state.credentials['email'] = action.payload;
+      // const monChampAModifier = 'email';
+      // state.credentials[monChampAModifier] = action.payload;
+      // Je récupère depuis mon payload le nom du champ à modifier et sa valeur
+      const { fieldName, value } = action.payload;
+      state.credentials[fieldName] = value;
     },
   },
 });
 
-export const { toggleSettings, changeInputEmailValue } = settingsSlice.actions;
+export const { toggleSettings, changeInputCredentialValue } =
+  settingsSlice.actions;
 
 export default settingsSlice.reducer;

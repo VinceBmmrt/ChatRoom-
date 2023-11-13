@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { X } from 'react-feather';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import {
-  changeInputEmailValue,
+  changeInputCredentialValue,
   toggleSettings,
 } from '../../store/reducers/settings';
 import './Settings.scss';
@@ -29,7 +29,25 @@ function Settings() {
   const handleChangeEmail = (event: ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
 
-    dispatch(changeInputEmailValue(newValue));
+    // J'emet l'intention de changer la valeur de mon email
+    dispatch(
+      changeInputCredentialValue({
+        fieldName: 'email',
+        value: newValue,
+      })
+    );
+  };
+
+  const handleChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
+    const newValue = event.target.value;
+
+    // J'emet l'intention de changer la valeur de mon password
+    dispatch(
+      changeInputCredentialValue({
+        fieldName: 'password',
+        value: newValue,
+      })
+    );
   };
 
   return (
@@ -59,6 +77,7 @@ function Settings() {
           className="settings__input"
           placeholder="Mot de passe"
           value={passwordValue}
+          onChange={handleChangePassword}
         />
         <button type="submit" className="settings__submit">
           Envoyer
