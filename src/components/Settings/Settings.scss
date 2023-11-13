@@ -1,0 +1,55 @@
+@use './src/styles/variables.scss' as v;
+
+.settings {
+  position: fixed;
+  z-index: 1;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.7rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0.5rem;
+  border-radius: 1rem;
+
+  &__toggle {
+    border: none;
+    background-color: white;
+    color: v.$purple;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    transition: scale 0.3s linear;
+
+    &:hover {
+      scale: 1.2;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  &__input {
+    border: 2px solid transparent;
+    border-radius: 0.3rem;
+    padding: 0.3rem;
+    outline: none;
+
+    &:focus {
+      border-color: v.$purple;
+    }
+  }
+
+  &__submit {
+    border: none;
+    border-radius: 0.3rem;
+    padding: 0.5rem;
+    color: white;
+    background-color: v.$purple;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}
