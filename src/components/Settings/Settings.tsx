@@ -9,6 +9,12 @@ function Settings() {
   const dispatch = useAppDispatch();
   // Pour récupérer les données provenant de mon store, j'utilise useAppSelector
   const isSettingsOpened = useAppSelector((state) => state.settings.isOpen);
+  const emailValue = useAppSelector(
+    (state) => state.settings.credentials.email
+  );
+  const passwordValue = useAppSelector(
+    (state) => state.settings.credentials.password
+  );
 
   // Quand je click sur mon bouton toggle
   const handleClickToggle = () => {
@@ -30,8 +36,18 @@ function Settings() {
       </button>
 
       <form className="settings__form">
-        <input type="email" className="settings__input" />
-        <input type="password" className="settings__input" />
+        <input
+          type="email"
+          className="settings__input"
+          placeholder="Email"
+          value={emailValue}
+        />
+        <input
+          type="password"
+          className="settings__input"
+          placeholder="Mot de passe"
+          value={passwordValue}
+        />
         <button type="submit" className="settings__submit">
           Envoyer
         </button>
