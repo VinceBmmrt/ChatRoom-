@@ -1,5 +1,6 @@
 @use 'reset';
 @use 'variables' as v;
+@use './loader';
 
 body {
   margin: 0;

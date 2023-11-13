@@ -1,0 +1,43 @@
+@use './variables.scss' as v;
+
+.loader {
+  position: relative;
+  min-width: 40px;
+  min-height: 40px;
+
+  &:after {
+    content: '';
+    border: 3px solid white;
+    border-radius: 50%;
+    border-top: 3px solid v.$purple;
+    width: 30px;
+    height: 30px;
+    -webkit-animation: spin 3s linear infinite;
+    animation: spin 3s linear infinite;
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    z-index: 15;
+  }
+
+  &:before {
+    content: '';
+    height: 100%;
+    width: 100%;
+    display: block;
+    background: rgba(249, 249, 249, 0.9);
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

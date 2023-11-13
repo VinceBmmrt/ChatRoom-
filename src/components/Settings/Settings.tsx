@@ -1,9 +1,10 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, FormEvent } from 'react';
 import clsx from 'clsx';
 import { X } from 'react-feather';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import {
   changeInputCredentialValue,
+  login,
   toggleSettings,
 } from '../../store/reducers/settings';
 import './Settings.scss';
@@ -19,6 +20,8 @@ function Settings() {
   const passwordValue = useAppSelector(
     (state) => state.settings.credentials.password
   );
+  const isLoading = useAppSelector((state) => state.settings.isLoading);
+  const errorMsg = useAppSelector((state) => state.settings.error);
 
   // Quand je click sur mon bouton toggle
   const handleClickToggle = () => {
@@ -50,6 +53,20 @@ function Settings() {
     );
   };
 
+  // A la soumission de mon formulaire
+  const handleSubmitForm = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    // J'emet l'intention de me connecter
+    // Cette intention est une action asynchrone
+    dispatch(
+      login({
+        email: emailValue,
+        password: passwordValue,
+      })
+    );
+  };
+
   return (
     <div
       className={clsx('settings', {
@@ -64,7 +81,11 @@ function Settings() {
         <X />
       </button>
 
-      <form className="settings__form">
+      <form
+        // Je rajoute la class loader si une connexion est en cours
+        className={clsx('settings__form', { loader: isLoading })}
+        onSubmit={handleSubmitForm}
+      >
         <input
           type="email"
           className="settings__input"
@@ -82,6 +103,8 @@ function Settings() {
         <button type="submit" className="settings__submit">
           Envoyer
         </button>
+
+        {errorMsg && <div>{errorMsg}</div>}
       </form>
     </div>
   );
