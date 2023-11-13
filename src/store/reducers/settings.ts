@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type SettingsState = {
   isOpen: boolean;
@@ -25,9 +25,12 @@ const settingsSlice = createSlice({
       // true => false, false => true
       state.isOpen = !state.isOpen;
     },
+    changeInputEmailValue(state, action: PayloadAction<string>) {
+      state.credentials.email = action.payload;
+    },
   },
 });
 
-export const { toggleSettings } = settingsSlice.actions;
+export const { toggleSettings, changeInputEmailValue } = settingsSlice.actions;
 
 export default settingsSlice.reducer;

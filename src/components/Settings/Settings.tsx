@@ -1,7 +1,11 @@
+import { ChangeEvent } from 'react';
 import clsx from 'clsx';
 import { X } from 'react-feather';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { toggleSettings } from '../../store/reducers/settings';
+import {
+  changeInputEmailValue,
+  toggleSettings,
+} from '../../store/reducers/settings';
 import './Settings.scss';
 
 function Settings() {
@@ -21,6 +25,13 @@ function Settings() {
     // Je vais vouloir emettre l'intention d'inverser la valeur de isOpen
     dispatch(toggleSettings());
   };
+
+  const handleChangeEmail = (event: ChangeEvent<HTMLInputElement>) => {
+    const newValue = event.target.value;
+
+    dispatch(changeInputEmailValue(newValue));
+  };
+
   return (
     <div
       className={clsx('settings', {
@@ -41,6 +52,7 @@ function Settings() {
           className="settings__input"
           placeholder="Email"
           value={emailValue}
+          onChange={handleChangeEmail}
         />
         <input
           type="password"
