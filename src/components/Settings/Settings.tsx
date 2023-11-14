@@ -39,6 +39,16 @@ function Settings() {
         value: newValue,
       })
     );
+
+    /*
+    dispatch({
+      type: 'settings/changeInputCredentialValue',
+      payload: {
+        fieldName: 'email',
+        value: newValue,
+      },
+    })
+    */
   };
 
   const handleChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
