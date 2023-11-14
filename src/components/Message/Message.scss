@@ -5,6 +5,26 @@
   border: 2px solid transparent;
   border-radius: 1.5rem;
 
+  &--me {
+    background-color: #f0f;
+
+    .message {
+      &__author {
+        text-align: right;
+      }
+
+      &__content {
+        text-align: right;
+
+        &::before {
+          left: auto;
+          right: 2rem;
+          rotate: 90deg;
+        }
+      }
+    }
+  }
+
   &:hover {
     border-color: #f0f;
   }

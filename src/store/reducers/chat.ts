@@ -14,29 +14,8 @@ type ChatState = {
 // De manière générale, on va toujours définir le type pour notre état initial.
 // Cela permet par exemple de dire ce que contiendra nos tableaux. (souvent en état initial, les tableaux sont vides)
 const initialState: ChatState = {
-  messages: [
-    {
-      id: crypto.randomUUID(),
-      author: 'Moi',
-      content: 'Salut, ça va ?',
-    },
-    {
-      id: crypto.randomUUID(),
-      author: 'Jules',
-      content: 'Oui et toi ?',
-    },
-    {
-      id: crypto.randomUUID(),
-      author: 'Moi',
-      content: 'Oui, merci !',
-    },
-    {
-      id: crypto.randomUUID(),
-      author: 'Jules',
-      content: 'Tu fais quoi ?',
-    },
-  ],
-  inputValue: 'Yeah Men !',
+  messages: [],
+  inputValue: '',
 };
 
 // Pour créer mon reducer, je vais utiliser la fonction createSlice() de Redux Toolkit.
