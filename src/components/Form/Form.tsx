@@ -3,6 +3,7 @@ import { ChangeEvent, FormEvent } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { addNewMessage, changeInputValue } from '../../store/reducers/chat';
 import './Form.scss';
+import { sendMessage } from '../../socket/chat';
 
 function Form() {
   // Je vais vouloir emettre des intentions à mon store lorsque la valeur de mon input change
@@ -22,7 +23,8 @@ function Form() {
     event.preventDefault();
 
     // J'emet l'intention d'ajouter un message
-    dispatch(addNewMessage());
+    // dispatch(addNewMessage());
+    sendMessage();
   };
 
   return (
