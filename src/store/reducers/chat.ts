@@ -1,4 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+// Si j'ai besoin d'importer le RootState, je dois préciser que c'est un import de type et non un import de valeur.
+// Cela permet d'éviter les import cyclique.
+// reducer importe le store qui importe le reducer qui importe le store...
+import type { RootState } from '..';
 
 type Message = {
   id: string;
@@ -53,6 +57,14 @@ const chatSlice = createSlice({
 
 export const { changeInputValue, addNewMessage, addMessage } =
   chatSlice.actions;
+
+export const selectIsMine = (state: RootState, author: string) =>
+  state.settings.pseudo === author;
+
+export const selectMessages = (state: RootState) => state.chat.messages;
+
+// export const selectIsMine = (author: string) => (state: RootState) =>
+//   state.settings.pseudo === author;
 
 // J'exporte le reducer généré par Redux Toolkit.
 export default chatSlice.reducer;

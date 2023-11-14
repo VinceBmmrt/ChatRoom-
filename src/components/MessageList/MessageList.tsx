@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { selectMessages } from '../../store/reducers/chat';
 import { useAppSelector } from '../../hooks/redux';
 import {
   subscribeToNewMessages,
@@ -13,7 +14,7 @@ function MessageList() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   // Depuis mon store redux, je vais récupérer la liste des messages
   // Je récupère la donnée ET je m'abonne à ses modifications
-  const messages = useAppSelector((state) => state.chat.messages);
+  const messages = useAppSelector(selectMessages);
 
   // Lorsque j'arrive sur l'affichage de mes messages, je souhaite m'abonner à la réception de nouveaux messages
   useEffect(() => {

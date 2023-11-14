@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { useAppSelector } from '../../hooks/redux';
 import './Message.scss';
+import { selectIsMine } from '../../store/reducers/chat';
 
 type MessageProps = {
   author: string;
@@ -9,7 +10,7 @@ type MessageProps = {
 
 function Message({ author, content }: MessageProps) {
   // Je vais récupérer l'information de mon store redux
-  const isMine = useAppSelector((state) => state.settings.pseudo === author);
+  const isMine = useAppSelector((state) => selectIsMine(state, author));
 
   return (
     <div
