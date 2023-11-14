@@ -1,5 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { useAppSelector } from '../../hooks/redux';
+import {
+  subscribeToNewMessages,
+  unsubscribeToNewMessages,
+} from '../../socket/chat';
 import Message from '../Message/Message';
 import './MessageList.scss';
 
@@ -10,6 +14,18 @@ function MessageList() {
   // Depuis mon store redux, je vais récupérer la liste des messages
   // Je récupère la donnée ET je m'abonne à ses modifications
   const messages = useAppSelector((state) => state.chat.messages);
+
+  // Lorsque j'arrive sur l'affichage de mes messages, je souhaite m'abonner à la réception de nouveaux messages
+  useEffect(() => {
+    subscribeToNewMessages();
+
+    // Quand on s'abonne a des événements, il ne faut pas oublier de se désabonner quand on en a plus besoin
+    // Pour réaliser une action avant que le composant soit détruit, on retourne une fonction dans le useEffect
+    return () => {
+      // je me désabonne de la réception de nouveaux messages
+      unsubscribeToNewMessages();
+    };
+  }, []);
 
   // Le useEffect me permet de réagir lorsqu'un nouveau message arrive. (mon tableau de messages est modifié)
   useEffect(() => {

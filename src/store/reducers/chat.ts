@@ -65,10 +65,15 @@ const chatSlice = createSlice({
       // Après avoir ajouter mon message, je vide mon input.
       state.inputValue = '';
     },
+    // On utilisera cette intention pour ajouter le message envoyer par le serveur dans notre liste de messages
+    addMessage(state, action: PayloadAction<Message>) {
+      state.messages.push(action.payload);
+    },
   },
 });
 
-export const { changeInputValue, addNewMessage } = chatSlice.actions;
+export const { changeInputValue, addNewMessage, addMessage } =
+  chatSlice.actions;
 
 // J'exporte le reducer généré par Redux Toolkit.
 export default chatSlice.reducer;

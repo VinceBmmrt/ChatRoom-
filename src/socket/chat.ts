@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import store from '../store';
-import { changeInputValue } from '../store/reducers/chat';
+import { addMessage, changeInputValue } from '../store/reducers/chat';
 import { socket } from './io';
 
 export const sendMessage = () => {
@@ -19,4 +19,17 @@ export const sendMessage = () => {
 
   // Une fois le message envoyer, je vais vider le champ de saisie
   store.dispatch(changeInputValue(''));
+};
+
+export const subscribeToNewMessages = () => {
+  // Je m'abonne aux nouveaux messages envoyer par mon server
+  socket.on('new_message', (message) => {
+    // Quand je reçoit un nouveau message, je vais le rajouter dans mon store redux
+    store.dispatch(addMessage(message));
+  });
+};
+
+export const unsubscribeToNewMessages = () => {
+  // Je me désabonne des nouveaux messages envoyer par mon server
+  socket.off('new_message');
 };
